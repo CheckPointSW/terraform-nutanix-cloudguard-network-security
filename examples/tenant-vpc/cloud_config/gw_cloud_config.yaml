@@ -1,0 +1,58 @@
+#cloud-config
+runcmd:
+  - |
+    set -e
+    cv_path="/etc/cloud-version"
+    if test -f $cv_path; then
+      echo "template_name: gateway" >> $cv_path
+      echo "template_version: 01102025" >> $cv_path
+      echo "template_type: terraform" >> $cv_path
+    fi
+    cv_json_path="/etc/cloud-version.json"
+    cv_json_path_tmp="/etc/cloud-version-tmp.json"
+    if test -f $cv_json_path; then
+       cat $cv_json_path | jq '.template_name = "gateway"' | jq '.template_version = "01102025"' | jq '.template_type = "terraform"' > $cv_json_path_tmp
+       mv $cv_json_path_tmp $cv_json_path
+    fi
+  - touch /etc/finished_user_data
+blink_config:
+  gateway_cluster_member: true
+  admin_password_regular: ${admin_password}
+  maintenance_password_regular: ${maintenance_password}
+  mgmt_admin_radio: gaia_admin
+  download_info: true
+  upload_info: true
+  upload_crash_data: true
+  ftw_sic_key: ${ftw_sic}
+  hostname: ${hostname}
+  reboot_if_required: true
+clish:
+  - set user admin shell ${admin_shell}
+  - save config
+network:
+  version: 1
+  config:
+    - type: physical
+      name: eth0
+      subnets:
+        - type: static
+          address: ${mgmt_ip}
+          netmask: ${mgmt_netmask}
+          dns_nameservers: [ ${dns_ip} ]
+    - type: physical
+      name: eth1
+      subnets:
+        - type: static
+          address: ${data_ip}
+          netmask: ${data_netmask}
+          gateway: ${data_gateway}
+    - type: physical
+      name: eth2
+      subnets:
+        - type: static
+          address: ${ha_ip}
+          netmask: ${ha_netmask}
+ntp:
+  enabled: true
+  servers:
+    - ${ntp_server}

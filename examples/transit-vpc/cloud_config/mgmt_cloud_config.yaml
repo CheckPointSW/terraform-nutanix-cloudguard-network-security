@@ -1,0 +1,48 @@
+#cloud-config
+runcmd:
+  - |
+    set -e
+    cv_path="/etc/cloud-version"
+    if test -f $cv_path; then
+      echo "template_name: management" >> $cv_path
+      echo "template_version: 01102025" >> $cv_path
+      echo "template_type: terraform" >> $cv_path
+    fi
+    cv_json_path="/etc/cloud-version.json"
+    cv_json_path_tmp="/etc/cloud-version-tmp.json"
+    if test -f $cv_json_path; then
+       cat $cv_json_path | jq '.template_name = "management"' | jq '.template_version = "01102025"' | jq '.template_type = "terraform"' > $cv_json_path_tmp
+       mv $cv_json_path_tmp $cv_json_path
+    fi
+  - touch /etc/finished_user_data
+config_system:
+  mgmt_admin_passwd: ${mgmt_admin_password}
+  download_info: true
+  upload_info: true
+  mgmt_gui_clients_radio: any
+  mgmt_admin_radio: gaia_admin
+  install_mgmt_primary: true
+  install_mgmt_secondary: false
+  ftw_sic_key: ${ftw_sic}
+  install_security_gw: false
+  install_security_managment: true
+  reboot_if_required: false
+  hostname: ${hostname}
+  ntp_primary: ${ntp_server}
+  ntp_primary_version: ${ntp_version}
+  primary: ${primary_ip}
+  maintenance_hash: ${maintenance_hash}
+clish:
+  - set user admin shell ${admin_shell}
+  - save config
+network:
+  version: 1
+  config:
+    - type: physical
+      name: eth0
+      subnets:
+        - type: static
+          address: ${mgmt_ip}
+          netmask: ${mgmt_netmask}
+          gateway: ${mgmt_gateway}
+password: ${admin_password_duplicate}

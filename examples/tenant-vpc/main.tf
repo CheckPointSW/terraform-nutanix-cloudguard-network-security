@@ -44,13 +44,13 @@ locals {
 
   maintenance_hash = var.deploy_management ? replace(try(htpasswd_password.mgmt_password[0].sha512, "placeholder"), "$", "\\$") : null
 
-  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config.yaml", {
+  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config", {
     mgmt_admin_password      = var.mgmt_admin_password
     ftw_sic                  = var.ftw_sic
     hostname                 = var.mgmt_name
     ntp_server               = var.ntp_server
     ntp_version              = var.ntp_version
-    primary_ip               = var.dns_ip
+    primary_ip               = trimspace(try(var.dns_ip, ""))
     maintenance_hash         = local.maintenance_hash
     admin_shell              = var.mgmt_admin_shell
     mgmt_ip                  = local.mgmt_subnet_mgmt_ip
@@ -59,7 +59,7 @@ locals {
     admin_password_duplicate = var.mgmt_admin_password
   }) : null
 
-  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
+  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
     admin_password  = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
     ftw_sic         = var.ftw_sic
@@ -76,7 +76,7 @@ locals {
     ntp_server      = var.ntp_server
   })
 
-  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
+  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
     admin_password  = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
     ftw_sic         = var.ftw_sic

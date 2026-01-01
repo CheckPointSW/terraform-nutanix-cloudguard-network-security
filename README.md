@@ -1,11 +1,9 @@
-<!-- Will be removed after published
-![GitHub Wachers](https://img.shields.io/github/watchers/CheckPointSW/terraform-nutanix-cloudguard-network-security)
+![GitHub Watchers](https://img.shields.io/github/watchers/CheckPointSW/terraform-nutanix-cloudguard-network-security)
 ![GitHub Release](https://img.shields.io/github/v/release/CheckPointSW/terraform-nutanix-cloudguard-network-security)
 ![GitHub Commits Since Last Commit](https://img.shields.io/github/commits-since/CheckPointSW/terraform-nutanix-cloudguard-network-security/latest/master)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/CheckPointSW/terraform-nutanix-cloudguard-network-security/master)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/CheckPointSW/terraform-nutanix-cloudguard-network-security)
-![GitHub Downloads](https://img.shields.io/github/downloads/CheckPointSW/terraform-nutanix-cloudguard-network-security/total) 
--->
+![GitHub Downloads](https://img.shields.io/github/downloads/CheckPointSW/terraform-nutanix-cloudguard-network-security/total)
 
 # Terraform Modules for CloudGuard Network Security (CGNS) — Nutanix
 

@@ -77,6 +77,7 @@ module "transit_vpc" {
 
   clusterXL_virtual_ip = "172.16.20.20"
   network_to_reroute   = "192.168.0.0/23"
+  mgmt_admin_shell     = "/bin/bash"
   
   transit_subnets = {
     mgmt = {

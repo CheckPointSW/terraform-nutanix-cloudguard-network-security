@@ -204,6 +204,10 @@ variable "ftw_sic" {
   description = "Secure Internal Communication (SIC) key (>=8 alphanumeric characters)."
   type        = string
   sensitive   = true
+  validation {
+    condition = length(var.ftw_sic) >= 8
+    error_message = "SIC key must be at least 8 characters."
+  }
 }
 
 variable "mgmt_admin_password" {

@@ -64,7 +64,7 @@ module "tenant_vpc" {
   gw_admin_password         = "GwAdminPassword123!"
   gw_maintenance_password   = "GwMaintPassword123!"
   ftw_sic                   = "MyStrongSICKey123!"
-
+  mgmt_admin_shell          = "/etc/cli.sh"
   
   tenant_vpc_name = "TF-Tenant-VPC"
   dns_ip          = ""

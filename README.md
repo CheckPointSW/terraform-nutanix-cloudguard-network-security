@@ -65,19 +65,19 @@ Set the required environment variables, See [Nutanix Argument Reference](https:/
 
 ### Linux
 ```bash
-export NUTANIX_USER="your_nutanix_username"
+export NUTANIX_USERNAME="your_nutanix_username"
 export NUTANIX_PASSWORD="your_nutanix_password"
 export NUTANIX_ENDPOINT="your_prism_central_server"
 ```
 ### PowerShell (Windows)
 ```PowerShell
-$env:NUTANIX_USER="your_nutanix_username"
+$env:NUTANIX_USERNAME="your_nutanix_username"
 $env:NUTANIX_PASSWORD="your_nutanix_password"
-$env:NUTANIX_ENDPOINT"your_prism_central_server"
+$env:NUTANIX_ENDPOINT="your_prism_central_server"
 ```
 ### Command Prompt (Windows)
 ```cmd
-set NUTANIX_USER=your_nutanix_username
+set NUTANIX_USERNAME=your_nutanix_username
 set NUTANIX_PASSWORD=your_nutanix_password
 set NUTANIX_ENDPOINT=your_prism_central_server
 ```

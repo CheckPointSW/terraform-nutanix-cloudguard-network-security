@@ -72,7 +72,6 @@ module "tenant_vpc" {
 
   clusterXL_virtual_ip = "172.16.20.20"
   network_to_reroute = "192.168.100.0/22"
-  mgmt_admin_shell = "/bin/bash"
   
 
   subnets = {

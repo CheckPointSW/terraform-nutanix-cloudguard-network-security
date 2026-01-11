@@ -68,6 +68,7 @@ module "transit_vpc" {
   gw_admin_password         = "GwAdminPassword123!"
   gw_maintenance_password   = "GwMaintPassword123!"
   ftw_sic                   = "MyStrongSICKey123!"
+  mgmt_admin_shell          = "/etc/cli.sh"
 
 
   transit_vpc_name = "TF-Transit-VPC"

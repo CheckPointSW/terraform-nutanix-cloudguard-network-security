@@ -28,30 +28,9 @@ blink_config:
   reboot_if_required: true
 clish:
   - set user admin shell ${admin_shell}
+  - set static-route default nexthop gateway address ${mgmt_gateway} off
+  - set static-route default nexthop gateway address ${data_gateway} on
   - save config
-network:
-  version: 1
-  config:
-    - type: physical
-      name: eth0
-      subnets:
-        - type: static
-          address: ${mgmt_ip}
-          netmask: ${mgmt_netmask}
-          dns_nameservers: [ ${dns_ip} ]
-    - type: physical
-      name: eth1
-      subnets:
-        - type: static
-          address: ${data_ip}
-          netmask: ${data_netmask}
-          gateway: ${data_gateway}
-    - type: physical
-      name: eth2
-      subnets:
-        - type: static
-          address: ${ha_ip}
-          netmask: ${ha_netmask}
 ntp:
   enabled: true
   servers:

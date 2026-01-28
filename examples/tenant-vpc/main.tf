@@ -44,52 +44,36 @@ locals {
 
   maintenance_hash = var.deploy_management ? replace(try(htpasswd_password.mgmt_password[0].sha512, "placeholder"), "$", "\\$") : null
 
-  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config", {
+  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config.yaml", {
     mgmt_admin_password      = var.mgmt_admin_password
     ftw_sic                  = var.ftw_sic
     hostname                 = var.mgmt_name
     ntp_server               = var.ntp_server
     ntp_version              = var.ntp_version
-    primary_ip               = trimspace(try(var.dns_ip, ""))
     maintenance_hash         = local.maintenance_hash
     admin_shell              = var.mgmt_admin_shell
-    mgmt_ip                  = local.mgmt_subnet_mgmt_ip
-    mgmt_netmask             = cidrnetmask(local.mgmt_subnet_cidr)
-    mgmt_gateway             = local.mgmt_subnet_default_gw
     admin_password_duplicate = var.mgmt_admin_password
   }) : null
 
-  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
+  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
     admin_password  = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
     ftw_sic         = var.ftw_sic
     hostname        = format("%s-1", var.gw_name)
     admin_shell     = var.member1_admin_shell
-    mgmt_ip         = local.mgmt_subnet_member1_ip
-    mgmt_netmask    = cidrnetmask(local.mgmt_subnet_cidr)
-    dns_ip          = var.dns_ip
-    data_ip         = local.data_subnet_member1_ip
-    data_netmask    = cidrnetmask(local.data_subnet_cidr)
+    mgmt_gateway    = local.mgmt_subnet_default_gw
     data_gateway    = local.data_subnet_default_gw
-    ha_ip           = local.ha_subnet_member1_ip
-    ha_netmask      = cidrnetmask(local.ha_subnet_cidr)
     ntp_server      = var.ntp_server
   })
 
-  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
+  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
     admin_password  = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
     ftw_sic         = var.ftw_sic
     hostname        = format("%s-2", var.gw_name)
     admin_shell     = var.member2_admin_shell
-    mgmt_ip         = local.mgmt_subnet_member2_ip
-    mgmt_netmask    = cidrnetmask(local.mgmt_subnet_cidr)
-    dns_ip          = var.dns_ip
-    data_ip         = local.data_subnet_member2_ip
-    data_netmask    = cidrnetmask(local.data_subnet_cidr)
+    mgmt_gateway    = local.mgmt_subnet_default_gw
     data_gateway    = local.data_subnet_default_gw
-    ha_ip           = local.ha_subnet_member2_ip
-    ha_netmask      = cidrnetmask(local.ha_subnet_cidr)
     ntp_server      = var.ntp_server
   })
 

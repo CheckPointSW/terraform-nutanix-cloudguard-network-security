@@ -8,6 +8,7 @@ variable "cluster_name" {
   description = "Name of the Nutanix cluster registered in Prism Central."
   type        = string
 }
+
 variable "subnets" {
   description = "Map of management, data and HA subnets with static IP reservations for ClusterXL members and management." 
   type = map(object({

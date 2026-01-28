@@ -26,52 +26,37 @@ resource "htpasswd_password" "mgmt_password" {
 locals {
   maintenance_hash = var.deploy_management ? replace(try(htpasswd_password.mgmt_password[0].sha512, "placeholder"), "$", "\\$") : null
 
-  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config", {
+  mgmt_userdata = var.deploy_management ? templatefile("${path.module}/cloud_config/mgmt_cloud_config.yaml", {
     mgmt_admin_password      = var.mgmt_admin_password
     ftw_sic                  = var.ftw_sic
     hostname                 = var.mgmt_name
     ntp_server               = var.ntp_server
     ntp_version              = var.ntp_version
-    primary_ip               = trimspace(try(var.dns_ip, ""))
     maintenance_hash         = local.maintenance_hash
     admin_shell              = var.mgmt_admin_shell
-    mgmt_ip                  = var.transit_subnets["mgmt"].mgmt_ip
-    mgmt_netmask             = cidrnetmask(var.transit_subnets["mgmt"].cidr_block)
-    mgmt_gateway             = var.transit_subnets["mgmt"].default_gateway
     admin_password_duplicate = var.mgmt_admin_password
   }) : null
 
-  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
+  member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
     admin_password      = var.gw_admin_password
     maintenance_password= var.gw_maintenance_password
     ftw_sic             = var.ftw_sic
     hostname            = format("%s-1", var.gw_name)
     admin_shell         = var.member1_admin_shell
-    mgmt_ip             = var.transit_subnets["mgmt"].member1_ip
-    mgmt_netmask        = cidrnetmask(var.transit_subnets["mgmt"].cidr_block)
-    dns_ip              = var.dns_ip
-    data_ip             = var.transit_subnets["data"].member1_ip
-    data_netmask        = cidrnetmask(var.transit_subnets["data"].cidr_block)
+    mgmt_gateway        = var.transit_subnets["mgmt"].default_gateway
     data_gateway        = var.transit_subnets["data"].default_gateway
-    ha_ip               = var.transit_subnets["ha"].member1_ip
-    ha_netmask          = cidrnetmask(var.transit_subnets["ha"].cidr_block)
     ntp_server          = var.ntp_server
   })
 
-  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config", {
+  member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
     admin_password      = var.gw_admin_password
     maintenance_password= var.gw_maintenance_password
     ftw_sic             = var.ftw_sic
     hostname            = format("%s-2", var.gw_name)
     admin_shell         = var.member2_admin_shell
-    mgmt_ip             = var.transit_subnets["mgmt"].member2_ip
-    mgmt_netmask        = cidrnetmask(var.transit_subnets["mgmt"].cidr_block)
-    dns_ip              = var.dns_ip
-    data_ip             = var.transit_subnets["data"].member2_ip
-    data_netmask        = cidrnetmask(var.transit_subnets["data"].cidr_block)
+    mgmt_gateway        = var.transit_subnets["mgmt"].default_gateway
     data_gateway        = var.transit_subnets["data"].default_gateway
     ha_ip               = var.transit_subnets["ha"].member2_ip
-    ha_netmask          = cidrnetmask(var.transit_subnets["ha"].cidr_block)
     ntp_server          = var.ntp_server
   })
 

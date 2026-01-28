@@ -30,21 +30,8 @@ config_system:
   hostname: ${hostname}
   ntp_primary: ${ntp_server}
   ntp_primary_version: ${ntp_version}
-%{ if trimspace(primary_ip) != "" ~}
-  primary: ${primary_ip}
-%{ endif ~}
   maintenance_hash: ${maintenance_hash}
 clish:
   - set user admin shell ${admin_shell}
   - save config
-network:
-  version: 1
-  config:
-    - type: physical
-      name: eth0
-      subnets:
-        - type: static
-          address: ${mgmt_ip}
-          netmask: ${mgmt_netmask}
-          gateway: ${mgmt_gateway}
 password: ${admin_password_duplicate}

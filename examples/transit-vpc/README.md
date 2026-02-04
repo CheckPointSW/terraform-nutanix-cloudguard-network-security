@@ -68,7 +68,6 @@ module "transit_vpc" {
   gw_admin_password         = "GwAdminPassword123!"
   gw_maintenance_password   = "GwMaintPassword123!"
   ftw_sic                   = "MyStrongSICKey123!"
-  mgmt_admin_shell          = "/etc/cli.sh"
 
 
   transit_vpc_name = "TF-Transit-VPC"
@@ -76,6 +75,7 @@ module "transit_vpc" {
   dns_ip           = ""
   ntp_server       = "pool.ntp.org"
 
+  mgmt_admin_shell     = "/etc/cli.sh"
   clusterXL_virtual_ip = "172.16.20.20"
   network_to_reroute   = "192.168.0.0/23"
   

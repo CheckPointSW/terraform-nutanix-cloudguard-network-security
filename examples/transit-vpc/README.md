@@ -120,18 +120,18 @@ module "transit_vpc" {
 
   tenant_vpcs_subnets = {
     vpc_A = {
-      name            = "TF-Subnet-192.169.0.0"
-      cidr_block      = "192.169.0.0/24"
-      default_gateway = "192.169.0.1"
-      ip_start_range  = "192.169.0.10"
-      ip_end_range    = "192.169.0.200"
+      name            = "TF-Subnet-192.168.0.0"
+      cidr_block      = "192.168.0.0/24"
+      default_gateway = "192.168.0.1"
+      ip_start_range  = "192.168.0.10"
+      ip_end_range    = "192.168.0.200"
     }
     vpc_B = {
-      name            = "TF-Subnet-192.169.1.0"
-      cidr_block      = "192.169.1.0/24"
-      default_gateway = "192.169.1.1"
-      ip_start_range  = "192.169.1.10"
-      ip_end_range    = "192.169.1.200"
+      name            = "TF-Subnet-192.168.1.0"
+      cidr_block      = "192.168.1.0/24"
+      default_gateway = "192.168.1.1"
+      ip_start_range  = "192.168.1.10"
+      ip_end_range    = "192.168.1.200"
     }
   }
 }

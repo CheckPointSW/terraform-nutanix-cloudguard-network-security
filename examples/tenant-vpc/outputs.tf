@@ -22,3 +22,18 @@ output "network_to_reroute" {
   description = "Network routed to ClusterXL VIP"
   value       = var.network_to_reroute
 }
+
+output "gateway_member1_floating_ip" {
+    description = "Floating IP for the first gateway member"
+    value       = nutanix_floating_ip_v2.member1_fip.floating_ip[0].ipv4[0].value
+}
+
+output "gateway_member2_floating_ip" {
+  description = "Floating IP for the second gateway member"
+  value       = nutanix_floating_ip_v2.member2_fip.floating_ip[0].ipv4[0].value
+}
+
+output "management_vm_floating_ip" {
+  description = "Floating IP for the management VM (null if not deployed)"
+  value       = var.deploy_management ? nutanix_floating_ip_v2.mgmt_fip[0].floating_ip[0].ipv4[0].value : null
+}

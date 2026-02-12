@@ -186,11 +186,14 @@ module "transit_vpc" {
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| `management_vm_name` | Name of the Management VM deployed in the Transit VPC. |
-| `gateway_member1_name` | Name of the first ClusterXL gateway member. |
-| `gateway_member2_name` | Name of the second ClusterXL gateway member. |
-| `clusterXL_virtual_ip` | ClusterXL Virtual IP (data interface) used for Policy Based Routing. |
-| `network_to_reroute` | Network CIDR that is rerouted to the ClusterXL Virtual IP. |
+| Name                          | Description                                                          |
+|-------------------------------|----------------------------------------------------------------------|
+| `management_vm_name`          | Name of the Management VM deployed in the Transit VPC.               |
+| `gateway_member1_name`        | Name of the first ClusterXL gateway member.                          |
+| `gateway_member2_name`        | Name of the second ClusterXL gateway member.                         |
+| `clusterXL_virtual_ip`        | ClusterXL Virtual IP (data interface) used for Policy Based Routing. |
+| `network_to_reroute`          | Network CIDR that is rerouted to the ClusterXL Virtual IP.           |
+| `gateway_member1_floating_ip` | Floating IP for the first gateway member.                            |
+| `gateway_member2_floating_ip` | Floating IP for the second gateway member.                           |
+| `management_vm_floating_ip`   | Floating IP for the management VM (null if not deployed)             |
 

@@ -1,6 +1,6 @@
-# Check Point CloudGuard Transit VPC Example (Nutanix)
+# Check Point Cloud Firewall Transit VPC Example (Nutanix)
 
-This Terraform example deploys a full Check Point CloudGuard Network Security Transit VPC environment on Nutanix Prism
+This Terraform example deploys a full Check Point Cloud Firewall Transit VPC environment on Nutanix Prism
 Central and two attached Tenant VPCs to demonstrate a hub-and-spoke (transit) topology. It provisions the security
 management plane, a ClusterXL high‑availability gateway pair inside the Transit VPC, a dedicated transit-to-tenant
 subnet, and two sample tenant VPCs (A & B) that route north/south and east/west traffic via the transit security layer.
@@ -17,8 +17,8 @@ Components provisioned by this example:
 3. A dedicated overlay subnet (transit-to-tenant) for attaching downstream tenant VPCs
 4. Two simple Tenant VPCs (A & B) each with one overlay subnet
 5. **Policy Based Routing** (PBR) in Transit VPC to reroute specified networks to the ClusterXL Virtual IP
-6. CloudGuard Network Security Management Server VM (legacy boot, QCOW2 image)
-7. Two CloudGuard Security Gateway VMs (ClusterXL members) with three NICs (MGMT/DATA/HA)
+6. Cloud Firewall Management Server VM (legacy boot, QCOW2 image)
+7. Two Cloud Firewall Gateway VMs (ClusterXL members) with three NICs (MGMT/DATA/HA)
 8. Cloud‑Init (config drive) customization for first boot for management and both gateways
 9. Floating IPs bound to the first NIC (MGMT) of Management, member 1, and member 2
 
@@ -41,13 +41,13 @@ inspection. Adjust, extend, or remove tenant VPC creation if integrating with ex
 - Configure ClusterXL object in
   SmartConsole - [How to add clusterXL to security management](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Topics-Nutanix-DG-R81-10-Higher/Gateway-Deployment-HA-Transit-VPC.htm?tocpath=_____5#:~:text=Connect%20to%20the%20server%20in%20SmartConsole%20and%20create%20a%20Legacy%20ClusterXL%20cluster.)
 -
-Licensing - [CloudGuard Network Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm?tocpath=_____1)
+Licensing - [Cloud Firewall Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm?tocpath=_____1)
 - Single ClusterXL VIP variable (`clusterXL_virtual_ip`) pertains to the Data subnet; ensure alignment with chosen CIDR.
 - Security Policies; you must define access/Threat Prevention policy after deployment.
 
 ## Usage
 
-Follow best practices for using CGNS examples
+Follow best practices for using Cloud Firewall examples
 on [main readme.md file](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
 
 ## Example Usage
@@ -179,9 +179,9 @@ module "transit_vpc" {
 
 ## References
 
-- [Check Point CloudGuard Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
-- [CloudGuard Network Security for Nutanix - Recommended Topologies](https://support.checkpoint.com/results/sk/sk182972)
-- [CloudGuard for Nutanix Deployment Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Front-Matter/Front-Matter-How-to-Search-in-this-Book.htm)
+- [Check Point Cloud Firewall Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
+- [Check Point Cloud Firewall for Nutanix - Recommended Topologies](https://support.checkpoint.com/results/sk/sk182972)
+- [Cloud Firewall for Nutanix Deployment Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Front-Matter/Front-Matter-How-to-Search-in-this-Book.htm)
 - [Terraform Nutanix Provider Docs](https://registry.terraform.io/providers/nutanix/nutanix/latest/docs)
 
 ## Outputs

@@ -5,10 +5,10 @@
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/CheckPointSW/terraform-nutanix-cloudguard-network-security)
 ![GitHub Downloads](https://img.shields.io/github/downloads/CheckPointSW/terraform-nutanix-cloudguard-network-security/total)
 
-# Terraform Modules for CloudGuard Network Security (CGNS) — Nutanix
+# Terraform Modules for Check Point Cloud Firewall — Nutanix
 
 ## Introduction
-This repository provides a structured set of Terraform modules for deploying Check Point CloudGuard Network Security in Nutanix.<br>
+This repository provides a structured set of Terraform modules for deploying Check Point Cloud Firewall in Nutanix.<br>
 These modules automate the creation of Security Gateways and Management servers.<br>
 The repository contains:
 * Terraform modules
@@ -18,7 +18,7 @@ The repository contains:
 * Terraform version v1.10.5 or later **64bit version**.
 * Nutanix Prism Central 7.0 or later.
 * Nutanix Terraform Provider v2.0.0 or later.
-* Check Point CloudGuard Network Security QCOWs images from [CloudGuard Network for Private Cloud images
+* Check Point Cloud Firewall QCOWs images from [Cloud Firewall for Private Cloud images
   ](https://support.checkpoint.com/results/sk/sk158292) **R81.20** or later.
 
 ## Repository Structure
@@ -27,17 +27,17 @@ The repository contains:
 `Examples:` Demonstrates how to use the modules.
 
 **Submodules:**
-* [CloudGuard Management - Existing Subnet](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest/submodules/management-existing-subnet): Deploys a CloudGuard Management Server VM into an existing Nutanix subnet.
-* [CloudGuard Gateway - Existing Subnet](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest/submodules/gateway-existing-subnet): Deploys a CloudGuard Security Gateway VM into an existing Nutanix subnet.
+* [Cloud Firewall Management - Existing Subnet](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest/submodules/management-existing-subnet): Deploys a Cloud Firewall Management Server VM into an existing Nutanix subnet.
+* [Cloud Firewall Gateway - Existing Subnet](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest/submodules/gateway-existing-subnet): Deploys a Cloud Firewall Gateway VM into an existing Nutanix subnet.
 
 **Examples:**
-* [Tenant-VPC](https://registry.terraform.io/modules/checkpointsw/cloudguard-network-security/nutanix/latest/examples/tenant-vpc): Deploys a complete CloudGuard Network Security setup with Management and Gateway in a tenant VPC.
-* [Transit-VPC](https://registry.terraform.io/modules/checkpointsw/cloudguard-network-security/nutanix/latest/examples/transit-vpc): Deploys a CloudGuard Network Security Gateway in a transit VPC setup.
+* [Tenant-VPC](https://registry.terraform.io/modules/checkpointsw/cloudguard-network-security/nutanix/latest/examples/tenant-vpc): Deploys a complete Check Point Cloud Firewall setup with Management and Gateway in a tenant VPC.
+* [Transit-VPC](https://registry.terraform.io/modules/checkpointsw/cloudguard-network-security/nutanix/latest/examples/transit-vpc): Deploys a Cloud Firewall Gateway in a transit VPC setup.
 
 
 ***
 
-# Best Practices for Using CloudGuard Modules
+# Best Practices for Using Cloud Firewall Modules
 
 ## Step 1: Use the Required Module
 Add the required module in your Terraform configuration file to deploy resources. For example:
@@ -107,12 +107,12 @@ Notes:
 2. The deployment takes a few minutes to complete (depending on the deployment size, can take ~30 minutes).
 
 ## Related Products and Solutions
-* CloudGuard Network Security for [VMware](https://github.com/CheckPointSW/terraform-vmware-cloudguard-network-security)
-* CloudGuard Network Security for [AWS](https://github.com/CheckPointSW/terraform-aws-cloudguard-network-security)
-* CloudGuard Network Security for [Azure](https://github.com/CheckPointSW/terraform-azure-cloudguard-network-security)
+* Check Point Cloud Firewall for [VMware](https://github.com/CheckPointSW/terraform-vmware-cloudguard-network-security)
+* Check Point Cloud Firewall for [AWS](https://github.com/CheckPointSW/terraform-aws-cloudguard-network-security)
+* Check Point Cloud Firewall for [Azure](https://github.com/CheckPointSW/terraform-azure-cloudguard-network-security)
 
 ## References
-* For more information about Check Point CloudGuard for Public Cloud, see https://www.checkpoint.com/products/iaas-public-cloud-security/
-* CloudGuard documentation is available at https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk132552&
-* CloudGuard Network CheckMates community is available at https://community.checkpoint.com/t5/CloudGuard-IaaS/bd-p/cloudguard-iaas
+* For more information about Check Point Cloud Firewall for Public Cloud, see https://www.checkpoint.com/products/iaas-public-cloud-security/
+* Cloud Firewall documentation is available at https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk132552&
+* Cloud Firewall CheckMates community is available at https://community.checkpoint.com/t5/CloudGuard-IaaS/bd-p/cloudguard-iaas
 

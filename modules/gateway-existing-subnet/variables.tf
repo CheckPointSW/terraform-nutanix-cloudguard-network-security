@@ -16,18 +16,18 @@ variable "gw_internal_subnet_name" {
 
 # Security Gateway  variables
 variable "gw_name" {
-  description = "Name of the Check Point CloudGuard Security Gateway."
+  description = "Name of the Check Point Cloud Firewall Gateway."
   type        = string
   default     = "TF-Gateway"
 }
 
 variable "gw_description" {
-  description = "Description of the Check Point CloudGuard Security Gateway."
+  description = "Description of the Check Point Cloud Firewall Gateway."
   type        = string
-  default     = "Check Point CloudGuard Security Gateway VM created by Terraform"
+  default     = "Check Point Cloud Firewall Gateway VM created by Terraform"
 }
 variable "gw_image_name" {
-  description = "Name of the Check Point CloudGuard Security Gateway image in Nutanix Images library."
+  description = "Name of the Check Point Cloud Firewall Gateway image in Nutanix Images library."
   type        = string
 }
 

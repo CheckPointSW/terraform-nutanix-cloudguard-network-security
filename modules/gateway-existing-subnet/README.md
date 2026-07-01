@@ -1,6 +1,6 @@
-# Check Point CloudGuard Gateway Module (Existing Subnet)
+# Check Point Cloud Firewall Gateway Module (Existing Subnet)
 
-This Terraform module deploys a Check Point CloudGuard Network Security Gateway (single gateway or first member for
+This Terraform module deploys a Check Point Cloud Firewall Gateway (single gateway or first member for
 later clustering) VM into an **existing** Nutanix subnet.
 It is intended for scenarios where network topology (VPC / overlay subnets) is already provisioned and you only need to
 roll out a Security Gateway.
@@ -38,14 +38,14 @@ configuration.
 ## Usage
 
 Follow module usage best practices described in the main
-[CloudGuard Network Security Nutanix module documentation](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
+[Check Point Cloud Firewall Nutanix module documentation](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
 
 ## Example Usage
 
 ```hcl
 provider "nutanix" {}
 
-module "cloudguard_gw" {
+module "cloud_firewall_gw" {
   source = "CheckPointSW/cloudguard-network-security/nutanix//modules/gateway-existing-subnet"
 
   # Required parameters
@@ -56,7 +56,7 @@ module "cloudguard_gw" {
 
   # Optional overrides
   gw_name                 = "TF-GW"
-  gw_description          = "Terraform Deployed CloudGuard Gateway"
+  gw_description          = "Terraform Deployed Cloud Firewall Gateway"
   gw_num_cpus             = 2
   gw_num_cores_per_socket = 1
   gw_memory_in_gb         = 8
@@ -76,7 +76,7 @@ module "cloudguard_gw" {
 | gw_internal_subnet_name | string | **yes**  | -                                                        | Name of existing internal (LAN / trusted) Nutanix subnet for the second Gateway NIC.    |
 | gw_image_name           | string | **yes**  | -                                                        | QCOW2 image name for the Security Gateway in Nutanix image library.                     |
 | gw_name                 | string | no       | "TF-GW"                                                  | Gateway VM name.                                                                        |
-| gw_description          | string | no       | "Check Point CloudGuard Gateway VM created by Terraform" | Gateway VM description.                                                                 |
+| gw_description          | string | no       | "Check Point Cloud Firewall Gateway VM created by Terraform" | Gateway VM description.                                                                 |
 | gw_num_cpus             | number | no       | 2                                                        | Number of CPU sockets for the Gateway (>=2).                                            |
 | gw_num_cores_per_socket | number | no       | 1                                                        | Number of cores per socket (>=1).                                                       |
 | gw_memory_in_gb         | number | no       | 8                                                        | Gateway memory size in GB (>=4, 8 recommended).                                         |
@@ -87,13 +87,13 @@ module "cloudguard_gw" {
 
 | Name                | Description                                    |
 |---------------------|------------------------------------------------|
-| gateway_vm_name     | Name of the deployed CloudGuard Gateway VM     |
+| gateway_vm_name     | Name of the deployed Cloud Firewall Gateway VM     |
 | gateway_vm_id       | ID (ext_id) of the deployed Gateway VM         |
 | gateway_power_state | Current power state of the deployed Gateway VM |
 
 ## References
 
-- [Check Point CloudGuard Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
+- [Check Point Cloud Firewall Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
 - [sk179752 – How to configure cloud-init](https://support.checkpoint.com/results/sk/sk179752)
 - [Terraform Nutanix Provider Docs](https://registry.terraform.io/providers/nutanix/nutanix/latest/docs)
-- [Check Point CloudGuard Network Security Documentation](https://sc1.checkpoint.com)
+- [Check Point Cloud Firewall Documentation](https://sc1.checkpoint.com)

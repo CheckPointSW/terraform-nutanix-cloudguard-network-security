@@ -87,7 +87,7 @@ variable "mgmt_name" {
 variable "mgmt_description" {
   description = "Management Server VM description."
   type        = string
-  default     = "Check Point CloudGuard Management Server VM created by Terraform"
+  default     = "Check Point Cloud Firewall Management Server VM created by Terraform"
 }
 variable "mgmt_image_name" {
   description = "QCOW2 image name for the Management Server in Nutanix image library."

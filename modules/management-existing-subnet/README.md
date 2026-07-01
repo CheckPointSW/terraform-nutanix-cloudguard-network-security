@@ -1,6 +1,6 @@
-# Check Point CloudGuard Management Module (Existing Subnet)
+# Check Point Cloud Firewall Management Module (Existing Subnet)
 
-This Terraform module deploys a Check Point CloudGuard Network Security Management Server VM into an **existing** Nutanix subnet
+This Terraform module deploys a Check Point Cloud Firewall Management Server VM into an **existing** Nutanix subnet
 (no VPC or subnet creation).
 It is intended for scenarios where network topology (VPC / overlay subnets) is pre‑provisioned,
 and you only need to roll out the Management plane.
@@ -33,20 +33,20 @@ VPCs, subnets, floating IPs, gateways - those are assumed to exist / be managed 
 After the VM is created, you must still perform standard Check Point Management setup and onboarding tasks:
 
 - Initial login and first‑time wizard (if not automated via user‑data) – set SIC, hostname, etc.
-- Licensing – [CloudGuard Network Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm)
+- Licensing – [Cloud Firewall Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm)
 - Create / import Security Gateways and define security policies
 
 ## Usage
 
 Follow module usage best practices described in the main
-[CloudGuard Network Security Nutanix module documentation](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
+[Check Point Cloud Firewall Nutanix module documentation](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
 
 ## Example Usage
 
 ```hcl
 provider "nutanix" {}
 
-module "cloudguard_mgmt" {
+module "cloud_firewall_mgmt" {
   source = "CheckPointSW/cloudguard-network-security/nutanix//modules/management-existing-subnet"
 
   # Required parameters
@@ -56,7 +56,7 @@ module "cloudguard_mgmt" {
 
   # Optional overrides
   mgmt_name                = "TF-MGMT"
-  mgmt_description         = "Terraform Deployed CloudGuard Management"
+  mgmt_description         = "Terraform Deployed Cloud Firewall Management"
   mgmt_num_cpus            = 2
   mgmt_num_cores_per_socket= 1
   mgmt_memory_in_gb        = 8
@@ -75,7 +75,7 @@ module "cloudguard_mgmt" {
 | mgmt_subnet_name          | string | **yes**  | -                                                                  | Name of existing Nutanix subnet where the Management VM NIC will attach.                                     |
 | mgmt_image_name           | string | **yes**  | -                                                                  | QCOW2 image name for the Management Server in Nutanix image library.                                         |
 | mgmt_name                 | string | no       | "TF-MGMT"                                                          | Management VM name.                                                                                          |
-| mgmt_description          | string | no       | "Check Point CloudGuard Management Server VM created by Terraform" | Management VM description.                                                                                   |
+| mgmt_description          | string | no       | "Check Point Cloud Firewall Management Server VM created by Terraform" | Management VM description.                                                                                   |
 | mgmt_num_cpus             | number | no       | 2                                                                  | Number of CPU sockets for the Management Server (>=2).                                                       |
 | mgmt_num_cores_per_socket | number | no       | 1                                                                  | Number of cores per socket for the Management Server (>=1).                                                  |
 | mgmt_memory_in_gb         | number | no       | 8                                                                  | Management Server memory size in GB (>=8 recommended).                                                       |
@@ -84,7 +84,7 @@ module "cloudguard_mgmt" {
 
 ## References
 
-- [Check Point CloudGuard Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
+- [Check Point Cloud Firewall Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
 - [sk179752 – How to configure cloud-init](https://support.checkpoint.com/results/sk/sk179752)
-- [CloudGuard Network Central License Tool Admin Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm)
+- [Cloud Firewall Central License Tool Admin Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm)
 - [Terraform Nutanix Provider Docs](https://registry.terraform.io/providers/nutanix/nutanix/latest/docs)

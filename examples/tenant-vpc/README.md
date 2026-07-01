@@ -1,10 +1,10 @@
-# Check Point CloudGuard Tenant VPC Example (Nutanix)
+# Check Point Cloud Firewall Tenant VPC Example (Nutanix)
 
-This Terraform example deploys a complete Check Point CloudGuard Network Security Tenant VPC environment on Nutanix Prism
+This Terraform example deploys a complete Check Point Cloud Firewall Tenant VPC environment on Nutanix Prism
 Central:
 
-- CloudGuard Network Security Management Server
-- Two CloudGuard Network Security ClusterXL (2 members)
+- Cloud Firewall Management Server
+- Two Cloud Firewall ClusterXL (2 members)
 - VPC with 3 overlay subnets (Management, Data/External, HA/Sync)
 - Static IP assignment per interface
 - Floating IPs for management and both gateways
@@ -37,13 +37,13 @@ Components provisioned:
 
 After creation, further configuration is required:
   - Configure ClusterXL object in SmartConsole - [How to add clusterXL to security management](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Topics-Nutanix-DG-R81-10-Higher/Gateway-Deployment-HA-Transit-VPC.htm?tocpath=_____5#:~:text=Connect%20to%20the%20server%20in%20SmartConsole%20and%20create%20a%20Legacy%20ClusterXL%20cluster.)
-  - Licensing - [CloudGuard Network Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm?tocpath=_____1)
+  - Licensing - [Cloud Firewall Central License Tool Administration Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Central_License_Tool_Admin_Guide/Content/Front-Matter/Front-Matter-Important-Information-Central-License-Tool.htm?tocpath=_____1)
   - Single ClusterXL VIP variable (`clusterXL_virtual_ip`) pertains to the Data subnet; ensure alignment with chosen CIDR.
   - Security Policies; you must define access/Threat Prevention policy after deployment.
 
 ## Usage
 
-Follow best practices for using CGNS examples
+Follow best practices for using Cloud Firewall examples
 on [main readme.md file](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/nutanix/latest).
 
 ## Example Usage
@@ -139,7 +139,7 @@ module "tenant_vpc" {
 | network_to_reroute                                          | string      | no          | see example                                                        | CIDR network to reroute to the ClusterXL virtual IP.                                |
 | policy_routing_priority                                     | number      | no          | 20                                                                 | Priority of the Policy Based Routing rule (higher value = higher priority).         |
 | mgmt_name                                                   | string      | no          | "TF-Tenant-VPC-MGMT"                                               | Management Server VM name.                                                          |
-| mgmt_description                                            | string      | no          | "Check Point CloudGuard Management Server VM created by Terraform" | Management Server VM description.                                                   |
+| mgmt_description                                            | string      | no          | "Check Point Cloud Firewall Management Server VM created by Terraform" | Management Server VM description.                                                   |
 | mgmt_image_name                                             | string      | **yes**     | -                                                                  | QCOW2 image name for the Management Server in Nutanix image library.                |
 | deploy_management                                           | bool        | no          | true                                                               | Whether to deploy the Management Server (set false to skip).                        |
 | mgmt_num_cpus                                               | number      | no          | 2                                                                  | Number of CPU sockets for the Management Server (>=2).                              |
@@ -165,9 +165,9 @@ module "tenant_vpc" {
 
 ## References
 
-- [Check Point CloudGuard Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
-- [CloudGuard Network Security for Nutanix - Recommended Topologies](https://support.checkpoint.com/results/sk/sk182972)
-- [CloudGuard for Nutanix Deployment Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Front-Matter/Front-Matter-How-to-Search-in-this-Book.htm)
+- [Check Point Cloud Firewall Private Cloud Images (SK158292)](https://support.checkpoint.com/results/sk/sk158292)
+- [Check Point Cloud Firewall for Nutanix - Recommended Topologies](https://support.checkpoint.com/results/sk/sk182972)
+- [Cloud Firewall for Nutanix Deployment Guide](https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_CloudGuard_Network_for_Nutanix_DG/Content/Front-Matter/Front-Matter-How-to-Search-in-this-Book.htm)
 - [Terraform Nutanix Provider Docs](https://registry.terraform.io/providers/nutanix/nutanix/latest/docs)
 
 ## Outputs

@@ -80,10 +80,15 @@ resource "nutanix_virtual_machine_v2" "mgmt_vm" {
   }
 
   nics {
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = data.nutanix_subnet.mgmt_subnet.id
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = data.nutanix_subnet.mgmt_subnet.id
+        }
+        ipv4_config {
+          should_assign_ip = false
+        }
       }
     }
   }

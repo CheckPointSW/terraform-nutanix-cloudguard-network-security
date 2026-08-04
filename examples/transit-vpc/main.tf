@@ -401,15 +401,17 @@ resource "nutanix_virtual_machine_v2" "mgmt_vm" {
   }
 
   nics {
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["mgmt"].mgmt_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["mgmt"].mgmt_ip
+          }
         }
       }
     }
@@ -484,45 +486,51 @@ resource "nutanix_virtual_machine_v2" "member1_vm" {
 
   nics {
     # First NIC on MGMT subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["mgmt"].member1_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["mgmt"].member1_ip
+          }
         }
       }
     }
   }
   nics {
     # Second NIC on DATA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["data"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["data"].member1_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["data"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["data"].member1_ip
+          }
         }
       }
     }
   }
   nics {
     # Third NIC on HA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["ha"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["ha"].member1_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["ha"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["ha"].member1_ip
+          }
         }
       }
     }
@@ -597,45 +605,51 @@ resource "nutanix_virtual_machine_v2" "member2_vm" {
 
   nics {
     # First NIC on MGMT subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["mgmt"].member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["mgmt"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["mgmt"].member2_ip
+          }
         }
       }
     }
   }
   nics {
     # Second NIC on DATA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["data"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["data"].member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["data"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["data"].member2_ip
+          }
         }
       }
     }
   }
   nics {
     # Third NIC on HA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["ha"].name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = var.transit_subnets["ha"].member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.transit_vpc_subnets[var.transit_subnets["ha"].name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = var.transit_subnets["ha"].member2_ip
+          }
         }
       }
     }

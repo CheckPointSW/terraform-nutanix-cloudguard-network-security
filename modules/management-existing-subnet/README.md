@@ -25,7 +25,7 @@ VPCs, subnets, floating IPs, gateways - those are assumed to exist / be managed 
 | Image                 | R81.20+ Management QCOW2 image uploaded ("All deployment types") from [SK158292](https://support.checkpoint.com/results/sk/sk158292)  |
 | Existing Subnet       | Target Nutanix subnet name supplying connectivity for the Management Server VM                                                        |
 | Terraform             | v1.10.5+ **64Bit** version                                                                                                            |
-| Nutanix Provider      | `nutanix/nutanix` >= 2.3.1                                                                                                            |
+| Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                                            |
 | User‑Data (optional)  | Cloud‑Init file (plain text) if you wish to customize first boot (see [sk179752](https://support.checkpoint.com/results/sk/sk179752)) |
 
 ## Post‑deployment configuration

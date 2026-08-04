@@ -32,7 +32,7 @@ inspection. Adjust, extend, or remove tenant VPC creation if integrating with ex
 | Nutanix Prism Central | API credentials with permissions to create VPCs, subnets, VMs, floating IPs, static routes, and policy based routing                                                                    |
 | Images                | R81.20+ Images, uploaded QCOW2 images for Management ("All deployment types") and Gateway ("Security Gateway only") from [SK158292](https://support.checkpoint.com/results/sk/sk158292) |
 | Terraform             | v1.10.5+ **64Bit** version                                                                                                                                                              |
-| Nutanix Provider      | `nutanix/nutanix` >= 2.3.1                                                                                                                                                              |
+| Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                                                                                              |
 | External Subnet       | Existing external subnet supplying egress and floating IP association                                                                                                                   |
 | Static IP plan        | IP allocations for: 3 internal transit subnets (MGMT/DATA/HA)                                                                                                                           |
 

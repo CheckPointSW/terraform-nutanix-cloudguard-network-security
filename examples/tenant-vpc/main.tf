@@ -244,15 +244,17 @@ resource "nutanix_virtual_machine_v2" "mgmt_vm" {
   }
 
   nics {
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.mgmt_subnet_mgmt_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = local.mgmt_subnet_mgmt_ip
+          }
         }
       }
     }
@@ -326,45 +328,51 @@ resource "nutanix_virtual_machine_v2" "member1_vm" {
 
   nics {
     # First NIC on MGMT subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.mgmt_subnet_member1_ip
+      nic_network_info {
+        virtual_ethernet_nic_network_info {
+          nic_type = "NORMAL_NIC"
+          subnet {
+            ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
+          }
+          ipv4_config {
+            should_assign_ip = true
+            ip_address {
+              value = local.mgmt_subnet_member1_ip
+            }
+          }
         }
-      }
     }
   }
   nics {
     # Second NIC on DATA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.data_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.data_subnet_member1_ip
+      nic_network_info {
+        virtual_ethernet_nic_network_info {
+          nic_type = "NORMAL_NIC"
+          subnet {
+            ext_id = nutanix_subnet_v2.tenant_subnets[local.data_subnet_name].id
+          }
+          ipv4_config {
+            should_assign_ip = true
+            ip_address {
+              value = local.data_subnet_member1_ip
+            }
+          }
         }
-      }
     }
   }
   nics {
     # Third NIC on HA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.ha_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.ha_subnet_member1_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.tenant_subnets[local.ha_subnet_name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = local.ha_subnet_member1_ip
+          }
         }
       }
     }
@@ -438,45 +446,51 @@ resource "nutanix_virtual_machine_v2" "member2_vm" {
 
   nics {
     # First NIC on MGMT subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.mgmt_subnet_member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.tenant_subnets[local.mgmt_subnet_name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = local.mgmt_subnet_member2_ip
+          }
         }
       }
     }
   }
   nics {
     # Second NIC on DATA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.data_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.data_subnet_member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.tenant_subnets[local.data_subnet_name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = local.data_subnet_member2_ip
+          }
         }
       }
     }
   }
   nics {
     # Third NIC on HA subnet
-    network_info {
-      nic_type = "NORMAL_NIC"
-      subnet {
-        ext_id = nutanix_subnet_v2.tenant_subnets[local.ha_subnet_name].id
-      }
-      ipv4_config {
-        should_assign_ip = true
-        ip_address {
-          value = local.ha_subnet_member2_ip
+    nic_network_info {
+      virtual_ethernet_nic_network_info {
+        nic_type = "NORMAL_NIC"
+        subnet {
+          ext_id = nutanix_subnet_v2.tenant_subnets[local.ha_subnet_name].id
+        }
+        ipv4_config {
+          should_assign_ip = true
+          ip_address {
+            value = local.ha_subnet_member2_ip
+          }
         }
       }
     }

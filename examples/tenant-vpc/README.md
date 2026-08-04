@@ -30,7 +30,7 @@ Components provisioned:
 | Nutanix Prism Central | API credentials with permissions to create VPCs, subnets, VMs, floating IPs                                                                                                             |
 | Images                | R81.20+ Images, Uploaded QCOW2 images for Management ("All deployment types") and Gateway ("Security Gateway only") from [SK158292](https://support.checkpoint.com/results/sk/sk158292) |
 | Terraform             | v1.10.5+ **64Bit** version                                                                                                                                                              |
-| Nutanix Provider      | `nutanix/nutanix` >= 2.3.1                                                                                                                                                              |
+| Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                                                                                              |
 | Static IP plan        | 4 IPs: One external IP allocated for the VPC plus three additional free external IPs for floating IPs (management, member1, member2)                                                    |
 
 ## Post‑deployment configuration:

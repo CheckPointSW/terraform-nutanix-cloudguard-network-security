@@ -16,8 +16,8 @@ The repository contains:
 
 ### Prerequisites
 * Terraform version v1.10.5 or later **64bit version**.
-* Nutanix Prism Central 7.0 or later.
-* Nutanix Terraform Provider v2.0.0 or later.
+* Nutanix Prism Central 7.5 or later.
+* Nutanix Terraform Provider v2.4.2 or later.
 * Check Point Cloud Firewall QCOWs images from [Cloud Firewall for Private Cloud images
   ](https://support.checkpoint.com/results/sk/sk158292) **R81.20** or later.
 

@@ -25,7 +25,7 @@ VPCs, subnets, floating IPs, gateways - those are assumed to exist / be managed 
 | Image                 | R81.20+ Gateway QCOW2 image uploaded ("Gateway") from [SK158292](https://support.checkpoint.com/results/sk/sk158292) |
 | Existing Subnets      | Names of the existing external and internal Nutanix subnets for the Gateway VM NICs                                  |
 | Terraform             | v1.10.5+ **64Bit** version                                                                                           |
-| Nutanix Provider      | `nutanix/nutanix` >= 2.3.1                                                                                           |
+| Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                           |
 | User‑Data (optional)  | Cloud‑Init file (plain text) to automate first boot configuration (admin password, SIC, hostname, etc.)              |
 
 ## Post‑deployment configuration

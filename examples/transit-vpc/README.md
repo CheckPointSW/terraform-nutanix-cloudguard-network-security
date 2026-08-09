@@ -176,6 +176,7 @@ module "transit_vpc" {
 | member1_disk_size_in_gb / member2_disk_size_in_gb           | number      | no          | 100                                         | Gateway member disk size in GB (>=50, 100 recommended).                             |
 | member1_admin_shell / member2_admin_shell                   | string      | no          | "/etc/cli.sh"                               | Admin shell for gateway members.                                                    |
 | ftw_sic                                                     | string      | **yes**     | -                                           | Secure Internal Communication (SIC) key (>=8 alphanumeric characters).              |
+| admin_ssh_key                                               | string      | no          | ""                                          | SSH public key.                                                                     |
 
 ## References
 

@@ -53,28 +53,31 @@ locals {
     maintenance_hash         = local.maintenance_hash
     admin_shell              = var.mgmt_admin_shell
     admin_password_duplicate = var.mgmt_admin_password
+    ssh_key                  = var.admin_ssh_key
   }) : null
 
   member1_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
-    admin_password  = var.gw_admin_password
+    admin_password       = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
-    ftw_sic         = var.ftw_sic
-    hostname        = format("%s-1", var.gw_name)
-    admin_shell     = var.member1_admin_shell
-    mgmt_gateway    = local.mgmt_subnet_default_gw
-    data_gateway    = local.data_subnet_default_gw
-    ntp_server      = var.ntp_server
+    ftw_sic              = var.ftw_sic
+    hostname             = format("%s-1", var.gw_name)
+    admin_shell          = var.member1_admin_shell
+    mgmt_gateway         = local.mgmt_subnet_default_gw
+    data_gateway         = local.data_subnet_default_gw
+    ntp_server           = var.ntp_server
+    ssh_key              = var.admin_ssh_key
   })
 
   member2_userdata = templatefile("${path.module}/cloud_config/gw_cloud_config.yaml", {
-    admin_password  = var.gw_admin_password
+    admin_password       = var.gw_admin_password
     maintenance_password = var.gw_maintenance_password
-    ftw_sic         = var.ftw_sic
-    hostname        = format("%s-2", var.gw_name)
-    admin_shell     = var.member2_admin_shell
-    mgmt_gateway    = local.mgmt_subnet_default_gw
-    data_gateway    = local.data_subnet_default_gw
-    ntp_server      = var.ntp_server
+    ftw_sic              = var.ftw_sic
+    hostname             = format("%s-2", var.gw_name)
+    admin_shell          = var.member2_admin_shell
+    mgmt_gateway         = local.mgmt_subnet_default_gw
+    data_gateway         = local.data_subnet_default_gw
+    ntp_server           = var.ntp_server
+    ssh_key              = var.admin_ssh_key
   })
 
 }

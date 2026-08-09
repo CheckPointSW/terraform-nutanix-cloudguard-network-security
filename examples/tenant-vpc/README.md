@@ -162,6 +162,7 @@ module "tenant_vpc" {
 | member1_admin_shell / member2_admin_shell                   | string      | no          | "/etc/cli.sh"                                                      | Admin shell for gateway members.                                                    |
 | set_clients_subnets                                         | boolean     | no          | true                                                               | Whether to create client_subnet_1 and client_subnet_2 objects.                      |
 | client_subnet_1 / client_subnet_2                           | object      | no          | see example                                                        | Optional client overlay subnet objects created behind the Tenant VPC.               |
+| admin_ssh_key                                               | string      | no          | ""                                                                 | SSH public key.                                                                     |
 
 ## References
 

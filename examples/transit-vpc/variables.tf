@@ -367,3 +367,10 @@ variable "policy_routing_priority" {
   type        = number
   default     = 20
 }
+
+variable "admin_ssh_key" {
+  description = "SSH public key. Leave empty to skip SSH key authentication."
+  type        = string
+  sensitive   = true
+  default     = ""
+}

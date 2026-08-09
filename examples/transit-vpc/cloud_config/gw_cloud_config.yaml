@@ -1,4 +1,8 @@
 #cloud-config
+%{ if ssh_key != "" ~}
+ssh_authorized_keys:
+  - ${ssh_key}
+%{ endif ~}
 runcmd:
   - |
     set -e

@@ -24,8 +24,8 @@ output "network_to_reroute" {
 }
 
 output "gateway_member1_floating_ip" {
-    description = "Floating IP for the first gateway member"
-    value       = nutanix_floating_ip_v2.member1_fip.floating_ip[0].ipv4[0].value
+  description = "Floating IP for the first gateway member"
+  value       = nutanix_floating_ip_v2.member1_fip.floating_ip[0].ipv4[0].value
 }
 
 output "gateway_member2_floating_ip" {

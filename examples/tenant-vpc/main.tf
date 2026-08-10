@@ -514,10 +514,18 @@ resource "nutanix_virtual_machine_v2" "member2_vm" {
 #### Floating IPs #######
 # Floating IP for Management VM
 resource "nutanix_floating_ip_v2" "mgmt_fip" {
-  count                    = var.deploy_management ? 1 : 0
+  count                     = var.deploy_management ? 1 : 0
   name                      = "${var.mgmt_name}-fip"
   description               = "Floating IP for Management VM"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.mgmt_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.mgmt_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.mgmt_vm[0].nics[0].ext_id
@@ -531,6 +539,14 @@ resource "nutanix_floating_ip_v2" "member1_fip" {
   name                      = "${var.gw_name}-1-fip"
   description               = "Floating IP for Member 1"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.member1_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.member1_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.member1_vm.nics[0].ext_id
@@ -545,6 +561,14 @@ resource "nutanix_floating_ip_v2" "member2_fip" {
   name                      = "${var.gw_name}-2-fip"
   description               = "Floating IP for Member 2"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.member2_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.member2_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.member2_vm.nics[0].ext_id
@@ -555,7 +579,7 @@ resource "nutanix_floating_ip_v2" "member2_fip" {
 
 
 resource "nutanix_subnet_v2" "client_subnet_1" {
-  count = var.set_clients_subnets ? 1 : 0
+  count         = var.set_clients_subnets ? 1 : 0
   name          = var.client_subnet_1.name
   description   = "Subnet ${var.client_subnet_1.name} managed by Terraform"
   vpc_reference = nutanix_vpc_v2.tenant-vpc.id
@@ -585,7 +609,7 @@ resource "nutanix_subnet_v2" "client_subnet_1" {
 }
 
 resource "nutanix_subnet_v2" "client_subnet_2" {
-  count = var.set_clients_subnets ? 1 : 0
+  count         = var.set_clients_subnets ? 1 : 0
   name          = var.client_subnet_2.name
   description   = "Subnet ${var.client_subnet_2.name} managed by Terraform"
   vpc_reference = nutanix_vpc_v2.tenant-vpc.id

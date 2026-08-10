@@ -34,7 +34,7 @@ inspection. Adjust, extend, or remove tenant VPC creation if integrating with ex
 | Terraform             | v1.10.5+ **64Bit** version                                                                                                                                                              |
 | Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                                                                                              |
 | External Subnet       | Existing external subnet supplying egress and floating IP association                                                                                                                   |
-| Static IP plan        | IP allocations for: 3 internal transit subnets (MGMT/DATA/HA)                                                                                                                           |
+| Static IP plan        | 4 external IPs: one for the Transit VPC plus three additional free external IPs for floating IPs (management, member1, member2). The floating IPs are auto-assigned by default, or can be pinned to specific addresses via `mgmt_floating_ip` / `member1_floating_ip` / `member2_floating_ip`. Internal transit subnet ranges (MGMT/DATA/HA) are defined separately via `transit_subnets`. |
 
 ## Post‑deployment configuration:
 
@@ -69,6 +69,10 @@ module "transit_vpc" {
   gw_maintenance_password   = "GwMaintPassword123!"
   ftw_sic                   = "MyStrongSICKey123!"
 
+  # Optional: pin floating IPs to specific addresses
+  mgmt_floating_ip    = "203.0.113.10"
+  member1_floating_ip = "203.0.113.11"
+  member2_floating_ip = "203.0.113.12"
 
   transit_vpc_name = "TF-Transit-VPC"
   tenant_vpc_name  = "TF-Tenant-VPC"
@@ -145,6 +149,9 @@ module "transit_vpc" {
 | tenant_vpc_name                                             | string      | no          | "TF-Tenant-VPC"                             | Base name used for sample tenant VPCs (A & B).                                      |
 | cluster_name                                                | string      | **yes**     | -                                           | Name of the Nutanix cluster registered in Prism Central.                            |
 | external_subnet_name                                        | string      | **yes**     | -                                           | Existing external subnet to attach to the VPC.                                      |
+| mgmt_floating_ip                                            | string      | no          | ""                                          | Optional static floating IP for the Management VM from the external subnet. If empty, auto-assigned. |
+| member1_floating_ip                                         | string      | no          | ""                                          | Optional static floating IP for gateway member1 from the external subnet. If empty, auto-assigned. |
+| member2_floating_ip                                         | string      | no          | ""                                          | Optional static floating IP for gateway member2 from the external subnet. If empty, auto-assigned. |
 | transit_subnets                                             | map(object) | no          | see example                                 | Map of mgmt, data and ha subnets with static IP reservations.                       |
 | transit_to_tenant_subnet                                    | object      | no          | see example                                 | Subnet bridging transit VPC to downstream tenant VPCs.                              |
 | tenant_vpcs_subnets                                         | map(object) | no          | see example                                 | Map defining single overlay subnet per sample tenant VPC (A & B).                   |

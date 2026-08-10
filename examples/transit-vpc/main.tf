@@ -674,10 +674,18 @@ resource "nutanix_virtual_machine_v2" "member2_vm" {
 ####### Floating IPs #######
 # Floating IP for Management VM
 resource "nutanix_floating_ip_v2" "mgmt_fip" {
-  count                    = var.deploy_management ? 1 : 0
+  count                     = var.deploy_management ? 1 : 0
   name                      = "${var.mgmt_name}-fip"
   description               = "Floating IP for Management VM"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.mgmt_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.mgmt_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.mgmt_vm[0].nics[0].ext_id
@@ -691,6 +699,14 @@ resource "nutanix_floating_ip_v2" "member1_fip" {
   name                      = "${var.gw_name}-1-fip"
   description               = "Floating IP for GW 1"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.member1_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.member1_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.member1_vm.nics[0].ext_id
@@ -705,6 +721,14 @@ resource "nutanix_floating_ip_v2" "member2_fip" {
   name                      = "${var.gw_name}-2-fip"
   description               = "Floating IP for GW 2"
   external_subnet_reference = data.nutanix_subnet.external_subnet.id
+  dynamic "floating_ip" {
+    for_each = var.member2_floating_ip != "" ? [1] : []
+    content {
+      ipv4 {
+        value = var.member2_floating_ip
+      }
+    }
+  }
   association {
     vm_nic_association {
       vm_nic_reference = nutanix_virtual_machine_v2.member2_vm.nics[0].ext_id

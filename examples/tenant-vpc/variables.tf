@@ -10,7 +10,7 @@ variable "cluster_name" {
 }
 
 variable "subnets" {
-  description = "Map of management, data and HA subnets with static IP reservations for ClusterXL members and management." 
+  description = "Map of management, data and HA subnets with static IP reservations for ClusterXL members and management."
   type = map(object({
     name            = string
     cidr_block      = string
@@ -73,6 +73,36 @@ variable "ntp_version" {
 variable "external_subnet_name" {
   description = "Name of existing external subnet providing egress and floating IP allocations."
   type        = string
+}
+
+variable "mgmt_floating_ip" {
+  description = "Optional static floating IP for the Management VM, chosen from the external subnet. If empty, an IP is auto-assigned."
+  type        = string
+  default     = ""
+  validation {
+    condition     = var.mgmt_floating_ip == "" || can(cidrhost("${var.mgmt_floating_ip}/32", 0))
+    error_message = "mgmt_floating_ip must be a valid IPv4 address."
+  }
+}
+
+variable "member1_floating_ip" {
+  description = "Optional static floating IP for gateway member1, chosen from the external subnet. If empty, an IP is auto-assigned."
+  type        = string
+  default     = ""
+  validation {
+    condition     = var.member1_floating_ip == "" || can(cidrhost("${var.member1_floating_ip}/32", 0))
+    error_message = "member1_floating_ip must be a valid IPv4 address."
+  }
+}
+
+variable "member2_floating_ip" {
+  description = "Optional static floating IP for gateway member2, chosen from the external subnet. If empty, an IP is auto-assigned."
+  type        = string
+  default     = ""
+  validation {
+    condition     = var.member2_floating_ip == "" || can(cidrhost("${var.member2_floating_ip}/32", 0))
+    error_message = "member2_floating_ip must be a valid IPv4 address."
+  }
 }
 
 ###############################
@@ -155,7 +185,7 @@ variable "ftw_sic" {
   type        = string
   sensitive   = true
   validation {
-    condition = length(var.ftw_sic) >= 8
+    condition     = length(var.ftw_sic) >= 8
     error_message = "SIC key must be at least 8 characters."
   }
 }

@@ -31,7 +31,7 @@ Components provisioned:
 | Images                | R81.20+ Images, Uploaded QCOW2 images for Management ("All deployment types") and Gateway ("Security Gateway only") from [SK158292](https://support.checkpoint.com/results/sk/sk158292) |
 | Terraform             | v1.10.5+ **64Bit** version                                                                                                                                                              |
 | Nutanix Provider      | `nutanix/nutanix` >= 2.4.2                                                                                                                                                              |
-| Static IP plan        | 4 IPs: One external IP allocated for the VPC plus three additional free external IPs for floating IPs (management, member1, member2)                                                    |
+| Static IP plan        | 4 IPs: One external IP allocated for the VPC plus three additional free external IPs for floating IPs (management, member1, member2). The floating IPs are auto-assigned by default, or can be pinned to specific addresses via `mgmt_floating_ip` / `member1_floating_ip` / `member2_floating_ip`. |
 
 ## Post‑deployment configuration:
 
@@ -65,7 +65,11 @@ module "tenant_vpc" {
   gw_maintenance_password   = "GwMaintPassword123!"
   ftw_sic                   = "MyStrongSICKey123!"
 
-  
+  # Optional: pin floating IPs to specific addresses
+  mgmt_floating_ip    = "203.0.113.10"
+  member1_floating_ip = "203.0.113.11"
+  member2_floating_ip = "203.0.113.12"
+
   tenant_vpc_name = "TF-Tenant-VPC"
   dns_ip          = ""
   ntp_server      = "pool.ntp.org"
@@ -131,6 +135,9 @@ module "tenant_vpc" {
 | tenant_vpc_name                                             | string      | no          | "TF-Tenant-VPC"                                                    | Tenant VPC name.                                                                    |
 | cluster_name                                                | string      | **yes**     | -                                                                  | Name of the Nutanix cluster registered in Prism Central.                            |
 | external_subnet_name                                        | string      | **yes**     | -                                                                  | Existing external subnet to attach to the VPC.                                      |
+| mgmt_floating_ip                                            | string      | no          | ""                                                                 | Optional static floating IP for the Management VM from the external subnet. If empty, auto-assigned. |
+| member1_floating_ip                                         | string      | no          | ""                                                                 | Optional static floating IP for gateway member1 from the external subnet. If empty, auto-assigned. |
+| member2_floating_ip                                         | string      | no          | ""                                                                 | Optional static floating IP for gateway member2 from the external subnet. If empty, auto-assigned. |
 | subnets                                                     | map(object) | no          | see example                                                        | Map of mgmt, data and ha subnets with static IP reservations.                       |
 | dns_ip                                                      | string      | no          | ""                                                                 | Optional DNS server IPv4. If empty, no DHCP DNS options are configured.             |
 | ntp_server                                                  | string      | no          | pool.ntp.org                                                       | NTP server hostname or IPv4 address.                                                |

@@ -57,7 +57,7 @@ module "cloud_firewall_gw" {
   # Optional overrides
   gw_name                 = "TF-GW"
   gw_description          = "Terraform Deployed Cloud Firewall Gateway"
-  gw_num_cpus             = 2
+  gw_num_cpus             = 4
   gw_num_cores_per_socket = 1
   gw_memory_in_gb         = 8
   gw_disk_size_in_gb = 100
@@ -77,7 +77,7 @@ module "cloud_firewall_gw" {
 | gw_image_name           | string | **yes**  | -                                                        | QCOW2 image name for the Security Gateway in Nutanix image library.                     |
 | gw_name                 | string | no       | "TF-GW"                                                  | Gateway VM name.                                                                        |
 | gw_description          | string | no       | "Check Point Cloud Firewall Gateway VM created by Terraform" | Gateway VM description.                                                                 |
-| gw_num_cpus             | number | no       | 2                                                        | Number of CPU sockets for the Gateway (>=2).                                            |
+| gw_num_cpus             | number | no       | 4                                                        | Number of CPU sockets for the Gateway (>=2).                                            |
 | gw_num_cores_per_socket | number | no       | 1                                                        | Number of cores per socket (>=1).                                                       |
 | gw_memory_in_gb         | number | no       | 8                                                        | Gateway memory size in GB (>=4, 8 recommended).                                         |
 | gw_disk_size_in_gb      | number | no       | 100                                                      | Gateway disk size in GB (>=50, 100 recommended).                                        |

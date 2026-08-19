@@ -28,9 +28,9 @@ variable "mgmt_image_name" {
 variable "mgmt_num_cpus" {
   description = "Number of CPU sockets for the Management Server (>=2)."
   type        = number
-  default     = 2
+  default     = 4
   validation {
-    condition     = var.mgmt_num_cpus > 1
+    condition     = var.mgmt_num_cpus >= 2
     error_message = "Number of CPUs must be at least 2."
   }
 }

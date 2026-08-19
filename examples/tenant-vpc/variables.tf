@@ -133,9 +133,9 @@ variable "deploy_management" {
 variable "mgmt_num_cpus" {
   description = "Number of CPU sockets for the Management Server (>=2)."
   type        = number
-  default     = 2
+  default     = 4
   validation {
-    condition     = var.mgmt_num_cpus > 1
+    condition     = var.mgmt_num_cpus >= 2
     error_message = "Number of CPUs must be at least 2."
   }
 }
@@ -223,9 +223,9 @@ variable "gw_image_name" {
 variable "member1_num_cpus" {
   description = "Number of CPU sockets for gateway member1 (>=2)."
   type        = number
-  default     = 2
+  default     = 4
   validation {
-    condition     = var.member1_num_cpus > 1
+    condition     = var.member1_num_cpus >= 2
     error_message = "Number of CPUs must be at least 2."
   }
 }
@@ -284,9 +284,9 @@ variable "gw_maintenance_password" {
 variable "member2_num_cpus" {
   description = "Number of CPU sockets for gateway member2 (>=2)."
   type        = number
-  default     = 2
+  default     = 4
   validation {
-    condition     = var.member2_num_cpus > 1
+    condition     = var.member2_num_cpus >= 2
     error_message = "Number of CPUs must be at least 2."
   }
 }

@@ -34,9 +34,9 @@ variable "gw_image_name" {
 variable "gw_num_cpus" {
   description = "Number of cores per socket. Value should be at least 2."
   type        = number
-  default     = 2
+  default     = 4
   validation {
-    condition     = var.gw_num_cpus > 1
+    condition     = var.gw_num_cpus >= 2
     error_message = "Number of CPUs must be at least 2."
   }
 }

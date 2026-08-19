@@ -57,7 +57,7 @@ module "cloud_firewall_mgmt" {
   # Optional overrides
   mgmt_name                = "TF-MGMT"
   mgmt_description         = "Terraform Deployed Cloud Firewall Management"
-  mgmt_num_cpus            = 2
+  mgmt_num_cpus            = 4
   mgmt_num_cores_per_socket= 1
   mgmt_memory_in_gb        = 8
   mgmt_disk_size_in_gb     = 100
@@ -76,7 +76,7 @@ module "cloud_firewall_mgmt" {
 | mgmt_image_name           | string | **yes**  | -                                                                  | QCOW2 image name for the Management Server in Nutanix image library.                                         |
 | mgmt_name                 | string | no       | "TF-MGMT"                                                          | Management VM name.                                                                                          |
 | mgmt_description          | string | no       | "Check Point Cloud Firewall Management Server VM created by Terraform" | Management VM description.                                                                                   |
-| mgmt_num_cpus             | number | no       | 2                                                                  | Number of CPU sockets for the Management Server (>=2).                                                       |
+| mgmt_num_cpus             | number | no       | 4                                                                  | Number of CPU sockets for the Management Server (>=2).                                                       |
 | mgmt_num_cores_per_socket | number | no       | 1                                                                  | Number of cores per socket for the Management Server (>=1).                                                  |
 | mgmt_memory_in_gb         | number | no       | 8                                                                  | Management Server memory size in GB (>=8 recommended).                                                       |
 | mgmt_disk_size_in_gb      | number | no       | 100                                                                | Management Server disk size in GB (>=50, 100 recommended).                                                   |

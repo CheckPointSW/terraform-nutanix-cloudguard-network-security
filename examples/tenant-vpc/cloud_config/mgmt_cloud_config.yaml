@@ -19,17 +19,14 @@ runcmd:
        mv $cv_json_path_tmp $cv_json_path
     fi
   - touch /etc/finished_user_data
-config_system:
+blink_config:
   mgmt_admin_passwd: ${mgmt_admin_password}
   download_info: true
   upload_info: true
-  mgmt_gui_clients_radio: any
   mgmt_admin_radio: gaia_admin
   install_mgmt_primary: true
   install_mgmt_secondary: false
   ftw_sic_key: ${ftw_sic}
-  install_security_gw: false
-  install_security_managment: true
   reboot_if_required: false
   hostname: ${hostname}
   ntp_primary: ${ntp_server}

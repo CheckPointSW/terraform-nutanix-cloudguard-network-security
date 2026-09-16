@@ -171,11 +171,11 @@ variable "mgmt_disk_size_in_gb" {
 
 variable "mgmt_admin_shell" {
   type        = string
-  description = "Admin shell for the Management Server (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin)."
+  description = "Admin shell for the Management Server (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin)."
   default     = "/etc/cli.sh"
   validation {
-    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/user/bin/scponly", "/sbin/nologin"], var.mgmt_admin_shell)
-    error_message = "mgmt_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin. "
+    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/usr/bin/scponly", "/sbin/nologin"], var.mgmt_admin_shell)
+    error_message = "mgmt_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin."
   }
 }
 
@@ -262,11 +262,11 @@ variable "member1_disk_size_in_gb" {
 
 variable "member1_admin_shell" {
   type        = string
-  description = "Admin shell for gateway member1 (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin)."
+  description = "Admin shell for gateway member1 (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin)."
   default     = "/etc/cli.sh"
   validation {
-    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/user/bin/scponly", "/sbin/nologin"], var.member1_admin_shell)
-    error_message = "member1_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin. "
+    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/usr/bin/scponly", "/sbin/nologin"], var.member1_admin_shell)
+    error_message = "member1_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin."
   }
 }
 
@@ -322,11 +322,11 @@ variable "member2_disk_size_in_gb" {
 
 variable "member2_admin_shell" {
   type        = string
-  description = "Admin shell for gateway member2 (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin)."
+  description = "Admin shell for gateway member2 (one of /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin)."
   default     = "/etc/cli.sh"
   validation {
-    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/user/bin/scponly", "/sbin/nologin"], var.member2_admin_shell)
-    error_message = "member2_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh ,/bin/sh, /bin/tcsh, /user/bin/scponly, /sbin/nologin. "
+    condition     = contains(["/etc/cli.sh", "/bin/bash", "/bin/csh", "/bin/sh", "/bin/tcsh", "/usr/bin/scponly", "/sbin/nologin"], var.member2_admin_shell)
+    error_message = "member2_admin_shell must be one of: /etc/cli.sh, /bin/bash, /bin/csh, /bin/sh, /bin/tcsh, /usr/bin/scponly, /sbin/nologin."
   }
 }
 
